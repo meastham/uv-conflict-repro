@@ -1,0 +1,33 @@
+[project]
+name = "repro"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+    "packages/foo",
+    "packages/bar",
+]
+
+[tool.uv.sources]
+foo = { workspace = true }
+bar = { workspace = true }
+
+[dependency-groups]
+bar = [
+    "bar",
+]
+foo = [
+    "foo",
+]
+
+[tool.uv]
+conflicts = [
+  [
+    { package = "foo" },
+    { package = "bar" },
+  ],
+]
